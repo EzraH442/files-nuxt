@@ -1,5 +1,3 @@
-import { defineEventHandler } from 'h3';
-
 import { checkAuth } from '~/server/utils/checkAuth';
 import { s3 } from '../../lib/backblaze';
 import {
@@ -7,8 +5,7 @@ import {
   type ListObjectVersionsCommandInput,
 } from '@aws-sdk/client-s3';
 import { _RouterLinkI } from 'vue-router';
-import { ApiResponse } from '~/lib/api/ApiResponse';
-
+import { extractFileName, extractFolderName } from '~/utils/helpers';
 export interface _Directory {
   name: string;
 }
@@ -40,7 +37,6 @@ export default checkAuth(async (event) => {
 
   const params: ListObjectVersionsCommandInput = { Bucket: 'ezrah442-testing' };
 
-  console.log(delimiter, prefix);
   if (prefix !== '') {
     params.Prefix = prefix;
   }
@@ -65,13 +61,13 @@ export default checkAuth(async (event) => {
 
   const directories =
     response.CommonPrefixes?.map((file) => ({
-      name: file.Prefix?.substring(0, file.Prefix?.length - 1),
+      name: extractFolderName(file.Prefix!),
     })).filter((v): v is { name: string } => !!v.name) ?? [];
 
   const files =
     response.Contents?.map((file) => ({
       id: file.ETag!,
-      name: file.Key!,
+      name: extractFileName(file.Key ?? ''),
     })) ?? [];
 
   const ret: ListReturn = { files, directories, error: '' };
