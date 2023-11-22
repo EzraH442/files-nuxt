@@ -64,15 +64,13 @@ const login = async () => {
 
     <div class="w-96 flex flex-col space-y-3">
 
-      <div>
-        <label for="email">Email:</label>
+      <UFormGroup label="Email">
         <UInput name="email" v-model="formData.email" required />
-      </div>
+      </UFormGroup>
 
-      <div>
-        <label for="email">Password:</label>
+      <UFormGroup label="Password">
         <UInput name="password" v-model="formData.password" required type="password" />
-      </div>
+      </UFormGroup>
 
 
       <UButton @click="login" class="px-3 py-2 rounded-md w-36" label="Login" />

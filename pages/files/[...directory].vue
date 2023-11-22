@@ -7,7 +7,10 @@ definePageMeta({
 
 const { data, loading, error } = useFileList()
 
+const d = useRoute()
+const directory = d.params.directory
 const open = ref(true)
+
 </script>
 
 <template>
@@ -15,10 +18,14 @@ const open = ref(true)
     <p v-if="loading">Fetching directories...</p>
     <p v-else-if="error">{{ error }}</p>
     <div v-else class="">
+      <Breadcrumbs :directories="directory" />
       <div class="flex">
         <div class="mr-4">
-          <UButton @click="open = !open" class="flex items-center" label="Show folders"
-            v-bind:icon="open ? 'i-heroicons-chevron-down' : 'i-heroicons-chevron-up'" />
+          <div class="flex">
+            <UButton @click="open = !open" class="flex items-center mr-auto" label="Show folders"
+              v-bind:icon="open ? 'i-heroicons-chevron-down' : 'i-heroicons-chevron-up'" />
+            <AddFolderButton />
+          </div>
           <div v-if="open">
             <Explorer :files="data.files" :directories="data.directories" />
           </div>
