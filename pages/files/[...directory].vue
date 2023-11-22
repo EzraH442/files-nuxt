@@ -15,37 +15,32 @@ const open = ref(true)
     <p v-if="loading">Fetching directories...</p>
     <p v-else-if="error">{{ error }}</p>
     <div v-else class="bg-red-200">
-      <div>
-        <button @click="open = !open" class="flex items-center">
-          <DownOutlined v-if="open" />
-          <UpOutlined v-else />
-          Show folders
-        </button>
-      </div>
-      <div class="relative">
-        <div class="absolute bg-gray-50 w-64 overflow-x-scroll">
-          <div class="flex">
-            <div v-if="open">
-              <ul>
-                <li v-for="dir in data.directories" class="flex items-center space-x-2">
-                  <FolderOutlined />
-                  <a v-bind:href="'/files/' + dir.name">{{ dir.name }}</a>
-                </li>
-              </ul>
-              <ul>
-                <li v-for="file in data.files" class="flex items-center space-x-2">
-                  <FileOutlined />
-                  <a v-bind:href="'#' + file.id">{{ file.name }}</a>
-                </li>
-              </ul>
-            </div>
+      <div class="flex">
+        <div>
+          <button @click="open = !open" class="flex items-center">
+            <DownOutlined v-if="open" />
+            <UpOutlined v-else />
+            Show folders
+          </button>
+          <div v-if="open" class="absolute bg-gray-50 w-64 overflow-x-scroll">
+            <Explorer :files="data.files" :directories="data.directories" />
           </div>
         </div>
-      </div>
-      <div class="bg-green-200">
-        <p>test</p>
-        <p>test</p>
-        <p>test</p>
+        <div class="w-full">
+          <div class="w-full h-60 border-dashed flex items-center justify-center bg-green-100">
+            <div class="flex items-center">
+              <UploadOutlined />
+              <p>
+                Upload file
+              </p>
+            </div>
+          </div>
+          <div>
+            <p>test</p>
+            <p>test</p>
+            <p>test</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>

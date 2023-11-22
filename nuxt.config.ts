@@ -6,8 +6,7 @@ export default defineNuxtConfig({
       hcaptchaSitekey: 'e40ebb8b-22e4-4b6d-9a6a-60be5442a593',
     },
   },
-  modules: ['@nuxtjs/tailwindcss', '@ant-design-vue/nuxt', '@pinia/nuxt'],
-  antd: {},
+  modules: ['@nuxt/ui', '@pinia/nuxt'],
   // routeRules: {
   //   '/files': { prerender: false, ssr: false, static: false },
   // },

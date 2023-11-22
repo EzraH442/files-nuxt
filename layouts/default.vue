@@ -11,13 +11,24 @@ const logout = async () => {
 </script>
 
 <template>
-  <div class="mx-2">
-    <div class="flex space-x-2 items-center">
-      <nuxt-link class="bg-green-200" to="/" no-prefetch>Home</nuxt-link>
-      <nuxt-link class="bg-green-200" to="/files" no-prefetch>Files</nuxt-link>
-      <nuxt-link class="bg-green-200" to="/login" no-prefetch>Login</nuxt-link>
-      <button class="bg-green-200" no-prefetch @click="logout">Sign out</button>
-    </div>
+  <nav class="flex items-center border-2 border-cyan-200 mb-6">
+    <nuxt-link to="/" no-prefetch>Home</nuxt-link>
+    <nuxt-link to="/files" no-prefetch>Files</nuxt-link>
+    <nuxt-link to="/login" no-prefetch>Login</nuxt-link>
+    <button no-prefetch @click="logout">Sign out</button>
+  </nav>
+  <div class="mx-4">
     <slot />
   </div>
 </template>
+
+<style>
+nav a,
+nav button {
+  padding: 12px 14px;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+</style>

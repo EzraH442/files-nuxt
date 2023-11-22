@@ -66,16 +66,16 @@ const login = async () => {
 
       <div>
         <label for="email">Email:</label>
-        <a-input name="email" v-model:value="formData.email" required />
+        <UInput name="email" v-model="formData.email" required />
       </div>
 
       <div>
         <label for="email">Password:</label>
-        <a-input name="password" v-model:value="formData.password" required type="password" />
+        <UInput name="password" v-model="formData.password" required type="password" />
       </div>
 
 
-      <button @click="login" class="px-3 py-2 border border-black rounded-md w-28">Login</button>
+      <UButton @click="login" class="px-3 py-2 rounded-md w-36" label="Login" />
 
       <vue-hcaptcha class="hidden" ref="asyncExecuteHCaptcha" sitekey="10000000-ffff-ffff-ffff-000000000001"
         @verify="onVerify" @expired="onExpire" @challengeExpired="onExpire" @error="onError" />
