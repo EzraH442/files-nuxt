@@ -1,6 +1,10 @@
 <script setup>
+const emit = defineEmits(['created']);
+
 const directory = useDirectory()
 const isOpen = ref(false)
+const submitting = ref(false)
+const error = ref('')
 const formData = ref({
   folderName: ''
 })
@@ -9,14 +13,24 @@ const onSubmit = async () => {
   if (!formData.value.folderName) {
     return
   }
+  submitting.value = true
 
   const { data, error } = await useFetch(`/api/files/createFolder`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     body: new URLSearchParams({ folderName: formData.value.folderName, directory }).toString(),
   });
+  console.log(data)
 
-  console.log('data', data)
+  submitting.value = false
+  isOpen.value = false
+  formData.value.folderName = ''
+  emit('created');
+}
+
+const onCancel = () => {
+  formData.value.folderName = ''
+  isOpen.value = false
 }
 
 </script>
@@ -43,8 +57,8 @@ const onSubmit = async () => {
 
         <template #footer>
           <div class="flex w-full justify-between">
-            <UButton label="Submit" @click="onSubmit" />
-            <UButton label="Cancel" @click="isOpen = false" />
+            <UButton :disabled="submitting" :loading="submitting" label="Submit" @click="onSubmit" />
+            <UButton label="Cancel" @click="onCancel" />
           </div>
         </template>
       </UCard>

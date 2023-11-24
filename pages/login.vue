@@ -56,7 +56,7 @@ const login = async () => {
   }
 
 };
-const hsitekey = runtimeConfig.public.hcaptchaSitekey
+const hsitekey = process.dev ? '10000000-ffff-ffff-ffff-000000000001' : runtimeConfig.public.hcaptchaSitekey
 
 </script>
 

@@ -7,7 +7,7 @@ const directory = d.params.directory
 const _dir = useDirectory()
 const open = ref(true)
 
-const { data, loading, error } = useFileList()
+const { data, loading, error, refetch } = useFileList()
 const { files, addFiles, removeFile } = useDraggedFiles()
 
 interface InputFileEvent extends Event {
@@ -40,6 +40,11 @@ const startUpload = async () => {
   }
   uploading.value = false
 }
+
+const onCreate = () => {
+  refetch()
+}
+
 </script>
 
 <template>
@@ -53,7 +58,7 @@ const startUpload = async () => {
           <div class="flex">
             <UButton @click="open = !open" class="flex items-center mr-auto" label="Show folders"
               v-bind:icon="open ? 'i-heroicons-chevron-down' : 'i-heroicons-chevron-up'" />
-            <AddFolderButton />
+            <AddFolderButton @created="onCreate" />
           </div>
           <div v-if="open">
             <Explorer :files="data.files" :directories="data.directories" />

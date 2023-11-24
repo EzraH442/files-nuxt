@@ -44,5 +44,5 @@ export const useFileList = () => {
 
   refetch();
 
-  return { data, loading, error };
+  return { data, loading, error, refetch };
 };
