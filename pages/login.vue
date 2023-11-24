@@ -77,8 +77,8 @@ const hsitekey = runtimeConfig.public.hcaptchaSitekey
 
       <UButton @click="login" class="px-3 py-2 rounded-md w-36" label="Login" />
 
-      <vue-hcaptcha class="hidden" ref="asyncExecuteHCaptcha" sitekey={{ hsitekey }} @verify="onVerify"
-        @expired="onExpire" @challengeExpired="onExpire" @error="onError" />
+      <vue-hcaptcha class="hidden" ref="asyncExecuteHCaptcha" :sitekey="hsitekey" @verify="onVerify" @expired="onExpire"
+        @challengeExpired="onExpire" @error="onError" />
 
       <div v-if="verified" id="verified">
         <h1>Successfully Verified!</h1>
