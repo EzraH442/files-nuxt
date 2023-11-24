@@ -20,7 +20,7 @@ const getSteps = (steps: number) => {
       <a href="/files" class="hover:underline">
         Home
       </a>
-      <p class="mx-2">></p>
+      <p class="mx-2" v-if="directories">></p>
     </span>
     <span v-for="(dir, index) in directories" class="flex items-center">
       <UIcon name="i-heroicons-folder" class="mr-2" />

@@ -57,8 +57,8 @@ const onCancel = () => {
 
         <template #footer>
           <div class="flex w-full justify-between">
-            <UButton :disabled="submitting" :loading="submitting" label="Submit" @click="onSubmit" />
             <UButton label="Cancel" @click="onCancel" />
+            <UButton :disabled="submitting" :loading="submitting" label="Submit" @click="onSubmit" />
           </div>
         </template>
       </UCard>
