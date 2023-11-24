@@ -12,7 +12,7 @@ WORKDIR /app
 RUN npm i pnpm -g
 
 COPY ./package* ./
-RUN PNPM install
+RUN pnpm install
 COPY ./ ./
 
 RUN npm run build
