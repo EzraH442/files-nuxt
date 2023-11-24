@@ -16,7 +16,15 @@ export default defineNuxtConfig({
   //     key: 'key.pem',
   //     cert: 'cert.pem',
   //   },
-  //   host: 'files.ezrahuang.com',
+  //   // host: 'files.ezrahuang,com',
   //   url: 'https://files.ezrahuang.com',
+  // },
+  // vite: {
+  //   server: {
+  //     https: true,
+  //     hmr: {
+  //       protocol: 'wss',
+  //     },
+  //   },
   // },
 });

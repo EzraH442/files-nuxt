@@ -30,6 +30,14 @@ export const emptyListReturn: ListReturn = {
   error: '',
 };
 
+const removeQuotes = (s: string) => {
+  return s.substring(1, s.length - 1);
+};
+
+export const addQuotes = (s: string) => {
+  return `"${s}"`;
+};
+
 export default checkAuth(async (event) => {
   const q = getQuery<{ prefix?: string; delimiter?: string }>(event);
 
@@ -66,10 +74,11 @@ export default checkAuth(async (event) => {
 
   const files =
     response.Contents?.map((file) => ({
-      id: file.ETag!,
+      id: removeQuotes(file.ETag!),
       name: extractFileName(file.Key ?? ''),
     })) ?? [];
 
+  console.log(files);
   const ret: ListReturn = { files, directories, error: '' };
 
   return ret;

@@ -7,6 +7,10 @@ interface props {
 
 const props = defineProps<props>()
 const directory = useDirectory()
+
+const makeAnchor = (id: string) => {
+  return '#' + id;
+}
 </script>
 
 <template>
@@ -20,7 +24,7 @@ const directory = useDirectory()
     <ul>
       <li v-for="file in files" class="flex items-center space-x-2">
         <UIcon name="i-heroicons-document" class="w-4 h-4 text-white" />
-        <a class="whitespace-nowrap overflow-ellipsis" v-bind:href="'#' + file.id">{{ file.name }}</a>
+        <a class="whitespace-nowrap overflow-ellipsis" v-bind:href='makeAnchor(file.id)'>{{ file.name }}</a>
       </li>
     </ul>
   </div>

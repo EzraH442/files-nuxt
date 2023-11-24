@@ -40,9 +40,7 @@ const open = ref(true)
             </div>
           </div>
           <div>
-            <p>test</p>
-            <p>test</p>
-            <p>test</p>
+            <Media v-for="file in data.files" :file="file" />
           </div>
         </div>
       </div>
