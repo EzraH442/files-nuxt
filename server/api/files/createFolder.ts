@@ -3,11 +3,14 @@ import { Options, Upload } from '@aws-sdk/lib-storage';
 import { s3 } from '~/server/lib/backblaze';
 
 export default checkAuth(async (event) => {
-  readFormData(event);
+  const formData = await readFormData(event);
+
+  const folderName = formData.get('folderName')?.toString() ?? '';
+  const directory = formData.get('directory')?.toString() ?? '';
 
   const params: PutObjectCommandInput = {
     Bucket: 'ezrah442-testing',
-    Key: '_folder',
+    Key: `${directory}${folderName}/_folder`,
     ContentType: 'text/plain',
     Body: '',
   };
@@ -18,7 +21,8 @@ export default checkAuth(async (event) => {
   };
 
   try {
-    new Upload(uploadOptions);
+    const res = await new Upload(uploadOptions).done();
+    console.log('res', res);
 
     return 'success';
   } catch (e) {

@@ -16,3 +16,18 @@ const heicRegex = /\.(HEIC)$/i;
 export const isImage = (fileName: string) => imageRegex.test(fileName);
 export const isVideo = (fileName: string) => videoRegex.test(fileName);
 export const isHEIC = (fileName: string) => heicRegex.test(fileName);
+
+const round = (n: number) => {
+  return Math.round(n * 10) / 10;
+};
+const units = ['bytes', 'KB', 'MB', 'GB', 'TB'];
+
+export const toHumanSize = (size: number) => {
+  for (let i = 0; i < units.length; i++) {
+    if (size < 1024) {
+      return `${round(size)} ${units[i]}`;
+    }
+    size /= 1024;
+  }
+  return 'File too large';
+};

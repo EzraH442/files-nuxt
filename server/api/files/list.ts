@@ -76,7 +76,7 @@ export default checkAuth(async (event) => {
     response.Contents?.map((file) => ({
       id: removeQuotes(file.ETag!),
       name: extractFileName(file.Key ?? ''),
-    })) ?? [];
+    })).filter((f) => f.name !== '_folder') ?? [];
 
   console.log(files);
   const ret: ListReturn = { files, directories, error: '' };

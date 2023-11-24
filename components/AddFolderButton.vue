@@ -1,13 +1,22 @@
 <script setup>
+const directory = useDirectory()
 const isOpen = ref(false)
-
 const formData = ref({
   folderName: ''
 })
 
-const onSubmit = () => {
-  if (formData.folderName)
-    console.log(formData)
+const onSubmit = async () => {
+  if (!formData.value.folderName) {
+    return
+  }
+
+  const { data, error } = await useFetch(`/api/files/createFolder`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: new URLSearchParams({ folderName: formData.value.folderName, directory }).toString(),
+  });
+
+  console.log('data', data)
 }
 
 </script>
@@ -29,7 +38,7 @@ const onSubmit = () => {
         <div class="my-8"></div>
 
         <UFormGroup label="Folder name">
-          <UInput v-model="formData.folderName" name="folderName" placeholder="Folder name" />
+          <UInput v-model="formData.folderName" placeholder="Folder name" />
         </UFormGroup>
 
         <template #footer>

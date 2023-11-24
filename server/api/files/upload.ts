@@ -41,14 +41,16 @@ export default checkAuth(async (event) => {
 
     const uploadStreamParams: UploadStreamParams = {
       Bucket: 'ezrah442-testing',
-      Key: part.originalFilename,
+      Key: part.name!,
       type: part.mimetype,
     };
 
     const { writeStream, promise } = uploadStream(uploadStreamParams);
 
     promise
-      .then((r) => {})
+      .then((r) => {
+        console.log(r);
+      })
       .catch((e) => {
         console.error(e);
       });
@@ -59,8 +61,8 @@ export default checkAuth(async (event) => {
   try {
     await form.parse(event.node.req);
 
-    return 'success';
+    return true;
   } catch (e) {
-    return 'fail';
+    return false;
   }
 });
