@@ -34,8 +34,9 @@ const removeQuotes = (s: string) => {
   return s.substring(1, s.length - 1);
 };
 
-export const addQuotes = (s: string) => {
-  return `"${s}"`;
+const hiddenFileNames = new Set(['.bzEmpty', '.DS_Store', '_folder']);
+const isHiddenFile = (fileName: string) => {
+  return hiddenFileNames.has(fileName);
 };
 
 export default checkAuth(async (event) => {
@@ -76,7 +77,7 @@ export default checkAuth(async (event) => {
     response.Contents?.map((file) => ({
       id: removeQuotes(file.ETag!),
       name: extractFileName(file.Key ?? ''),
-    })).filter((f) => f.name !== '_folder') ?? [];
+    })).filter((f) => !isHiddenFile(f.name)) ?? [];
 
   console.log(files);
   const ret: ListReturn = { files, directories, error: '' };
