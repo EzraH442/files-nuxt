@@ -7,24 +7,4 @@ export default defineNuxtConfig({
     },
   },
   modules: ['@nuxt/ui', '@pinia/nuxt'],
-  // routeRules: {
-  //   '/files': { prerender: false, ssr: false, static: false },
-  // },
-
-  // devServer: {
-  //   https: {
-  //     key: 'key.pem',
-  //     cert: 'cert.pem',
-  //   },
-  //   // host: 'files.ezrahuang,com',
-  //   url: 'https://files.ezrahuang.com',
-  // },
-  // vite: {
-  //   server: {
-  //     https: true,
-  //     hmr: {
-  //       protocol: 'wss',
-  //     },
-  //   },
-  // },
 });

@@ -56,6 +56,7 @@ const login = async () => {
   }
 
 };
+
 </script>
 
 <template>
@@ -75,7 +76,7 @@ const login = async () => {
 
       <UButton @click="login" class="px-3 py-2 rounded-md w-36" label="Login" />
 
-      <vue-hcaptcha class="hidden" ref="asyncExecuteHCaptcha" sitekey="10000000-ffff-ffff-ffff-000000000001"
+      <vue-hcaptcha class="hidden" ref="asyncExecuteHCaptcha" sitekey={{ runtimeConfig.hcaptchaSitekey }}
         @verify="onVerify" @expired="onExpire" @challengeExpired="onExpire" @error="onError" />
 
       <div v-if="verified" id="verified">

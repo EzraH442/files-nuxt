@@ -2,10 +2,6 @@
 import { type _Directory, type _File } from '~/server/api/files/list';
 import { FileStatus } from '~/composables/useDraggedFiles'
 
-definePageMeta({
-  middleware: ['auth']
-})
-
 const d = useRoute()
 const directory = d.params.directory
 const _dir = useDirectory()

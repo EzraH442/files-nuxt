@@ -23,7 +23,7 @@ export const useFileList = () => {
   const refetch = () => {
     return $fetch('/api/files/list', { params })
       .then((res) => {
-        if (res.error === 'Session expired') {
+        if (res.error === 'Session expired' || res.error === 'Bad Request') {
           navigateTo('/login');
           error.value = res.error;
         }

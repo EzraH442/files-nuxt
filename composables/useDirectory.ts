@@ -3,7 +3,7 @@ export const useDirectory = () => {
   const d = route.params.directory;
 
   let directory = '';
-  if (typeof d !== 'string') {
+  if (d && typeof d !== 'string') {
     d.forEach((v) => {
       directory += `${v}/`;
     });
