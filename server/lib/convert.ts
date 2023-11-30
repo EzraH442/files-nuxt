@@ -1,4 +1,4 @@
-import libheif from 'libheif-js/wasm-bundle';
+import libheif from 'libheif-js/wasm-bundle.js';
 import { PNG } from 'pngjs';
 
 export const convert = async (f: Blob) => {
