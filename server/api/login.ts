@@ -1,3 +1,5 @@
+import { CookieOptions } from 'nuxt/app';
+
 export default defineEventHandler(async (e) => {
   const body = await readFormData(e);
 
@@ -15,11 +17,17 @@ export default defineEventHandler(async (e) => {
     const res = await makeLoginRequest(params);
 
     if (res) {
-      setCookie(e, 'token', res, {
+      const params: CookieOptions = {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         sameSite: true,
-      });
+      };
+
+      if (process.env.NODE_ENV === 'production') {
+        params.secure = true;
+        params.domain = 'ezrahuang.com';
+      }
+      setCookie(e, 'token', res, params);
     }
     return !!res;
   } catch (e) {

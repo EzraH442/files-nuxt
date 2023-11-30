@@ -7,4 +7,9 @@ export default defineNuxtConfig({
     },
   },
   modules: ['@nuxt/ui', '@pinia/nuxt'],
+  nitro: {
+    hooks: {
+      'dev:reload': () => require('sharp'),
+    },
+  },
 });

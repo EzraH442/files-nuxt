@@ -9,7 +9,7 @@ export const extractFolderName = (path: string) => {
   );
 };
 
-const imageRegex = /\.(JPEG|PNG|JPG|GIF)$/i;
+const imageRegex = /\.(JPEG|PNG|JPG|GIF|MP)$/i;
 const videoRegex = /\.(MOV|MP4|MPV)$/i;
 const heicRegex = /\.(HEIC)$/i;
 
