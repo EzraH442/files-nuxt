@@ -1,5 +1,3 @@
-import sharp from 'sharp';
-import { convert } from '~/server/lib/convert';
 import { isHEIC, isImage, isVideo } from '~/utils/helpers';
 
 export default checkAuth(async (e) => {
@@ -29,25 +27,9 @@ export default checkAuth(async (e) => {
   console.log(f);
 
   try {
-    if (isVideo(file)) {
+    if (isVideo(file) || isHEIC(file) || isImage(file)) {
       return f;
-    } else if (isHEIC(file) || isImage(file)) {
-      let data: ArrayBuffer;
-
-      if (isHEIC(file)) {
-        data = await convert(f);
-        return data;
-      } else {
-        return f;
-      }
-
-      // const im = sharp(data);
-      // const metadata = await im.metadata();
-
-      // return im.resize(400).withMetadata().png({ quality });
     }
-
-    return f;
   } catch (e) {
     console.error(e);
   }
