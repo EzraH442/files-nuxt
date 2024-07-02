@@ -7,23 +7,11 @@ const props = defineProps<{ file: _File }>()
 
 const getSrc = (file: _File) => {
   const name = file.name;
-
-  if (isHEIC(name)) {
-    const params = new URLSearchParams({
-      filename: directory + name,
-      quality: '50'
-    })
-
-    return `/api/files/get?${params}`
-  }
-
-  else {
-    const url = `https://static.ezrahuang.com/file/ezrah442-testing/${directory}${name}`;
-    return url
-  }
-
+  const url = `https://static.ezrahuang.com/file/ezrah442-testing/${directory}${name}`;
+  return url
 }
 </script>
+
 <template>
   <UTooltip :text="file.name">
     <img v-if="isImage(file.name) || isHEIC(file.name)" v-bind:src="getSrc(file)" v-bind:id="file.id" />
