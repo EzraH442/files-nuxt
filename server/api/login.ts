@@ -1,4 +1,4 @@
-import { CookieOptions } from 'nuxt/app';
+import { type CookieOptions } from 'nuxt/app';
 
 export default defineEventHandler(async (e) => {
   const body = await readFormData(e);

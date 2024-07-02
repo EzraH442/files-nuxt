@@ -4,17 +4,9 @@ import {
   ListObjectsV2Command,
   type ListObjectVersionsCommandInput,
 } from '@aws-sdk/client-s3';
-import { _RouterLinkI } from 'vue-router';
+import { type _RouterLinkI } from 'vue-router';
 import { extractFileName, extractFolderName } from '~/utils/helpers';
-export interface _Directory {
-  name: string;
-}
-
-export interface _File {
-  id: string;
-  name: string;
-}
-
+import { type _Directory, type _File } from '~/types/types';
 export interface ApiReturn {
   error: string;
 }
@@ -23,12 +15,6 @@ export interface ListReturn extends ApiReturn {
   files: _File[];
   directories: _Directory[];
 }
-
-export const emptyListReturn: ListReturn = {
-  files: [],
-  directories: [],
-  error: '',
-};
 
 const removeQuotes = (s: string) => {
   return s.substring(1, s.length - 1);

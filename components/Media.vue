@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { _File } from '~/server/api/files/list';
 import { isImage, isVideo } from '~/utils/helpers'
+import type { _File } from '~/types/types'
 
 const directory = useDirectory()
 const props = defineProps<{ file: _File }>()

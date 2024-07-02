@@ -1,8 +1,11 @@
-import {
-  emptyListReturn,
-  type _File,
-  type _Directory,
-} from '~/server/api/files/list';
+import { type ListReturn, } from '~/server/api/files/list';
+import type { _Directory, _File } from '~/types/types';
+
+const emptyListReturn: ListReturn = {
+  files: [],
+  directories: [],
+  error: '',
+};
 
 export const useFileList = () => {
   const directory = useDirectory();

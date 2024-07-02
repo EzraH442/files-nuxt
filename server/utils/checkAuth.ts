@@ -41,6 +41,6 @@ export const checkAuth = <T extends EventHandlerRequest, D>(
       return r;
     } catch (err) {
       // console.log(err);
-      return { error: err.message ?? 'An unknown error occured' };
+      return { error: `An unknown error occured: ${err}` };
     }
   });

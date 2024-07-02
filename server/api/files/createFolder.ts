@@ -1,5 +1,5 @@
-import { PutObjectCommandInput } from '@aws-sdk/client-s3';
-import { Options, Upload } from '@aws-sdk/lib-storage';
+import { type PutObjectCommandInput } from '@aws-sdk/client-s3';
+import { type Options, Upload } from '@aws-sdk/lib-storage';
 import { s3 } from '~/server/lib/backblaze';
 
 export default checkAuth(async (event) => {

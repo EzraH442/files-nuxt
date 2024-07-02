@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type _Directory, type _File } from '~/server/api/files/list';
+import { type _Directory, type _File } from '~/types/types';
 
 const d = useRoute()
 const directory = d.params.directory
